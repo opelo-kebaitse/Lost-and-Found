@@ -2,15 +2,17 @@
 
 ## Sprint 7 Large group project
 
-The focus of this app is to practice using the full stack we teach in a large scale app.
+The focus of this app is to practice using the full stack that we teach in a larger-scale app.
 
-The idea of the app is to create a "billboard" style site for people to post about their animals that have gone missing, and for people who have found stray animals to post about them.
+"Lost and Found" is a community-based app designed to help people reunite with their missing pets and assist in finding stray animals. The idea of the app is to create a "billboard" style site for people to post about their animals that have gone missing, and for people who have found stray animals to post about them.
 
 The hope is that within a small community this could be a great go-to for making sure those run-away floofs make it home safely.
 
+Together, we'll turn every lost tail into a happy tale!
+
 ## The Tech
 
-A Boilerplate is already set up for you with everything you will need to get started. This boilerplate is set up to use:
+This repo is already set up for you with everything you will need to get started. This boilerplate is set up to use:
 
 * [React](https://reactjs.org/docs/getting-started.html)
 * [React Query](https://tanstack.com/query/v3/docs/react/overview)
