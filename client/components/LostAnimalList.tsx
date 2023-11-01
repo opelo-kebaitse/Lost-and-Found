@@ -31,11 +31,9 @@ export default function LostAnimals() {
         {animals.map((animal) => {
           return (
             <div className="lostAnimal-list" key={animal.user_id}>
-              <Link to={`/animal/${animal.user_id}`}>
-                <img src={animal.photo} alt={animal.name} />
-                <p>{animal.name}</p>
-              </Link>
-              <p>$ {animal.species}</p>
+              <img src={animal.photo} alt={animal.name} />
+              <p>{animal.name}</p>
+              <p>{animal.species}</p>
             </div>
           )
         })}
