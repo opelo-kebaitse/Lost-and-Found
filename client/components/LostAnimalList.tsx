@@ -1,33 +1,45 @@
-import React from 'react'
+import { getLostAnimals } from '../apis/animals.ts'
+import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom'
 
-interface LostAnimals {
-  name: string
-  species: string
-  photo: string
-  user_id: string
-  user_name: string
-  user_contact: string
-}
+export default function LostAnimals() {
+  const {
+    data: animals,
+    isLoading,
+    error,
+  } = useQuery(['animals'], getLostAnimals)
 
-interface LostAnimalListProps {
-  lostAnimals: LostAnimals[]
-}
+  if (error) {
+    return (
+      <>
+        <p>Something went wrong!</p>
+      </>
+    )
+  }
 
-const LostAnimalList: React.FC<LostAnimalListProps> = ({ lostAnimals }) => {
+  if (!animals || isLoading) {
+    return (
+      <>
+        <p>Loading</p>
+      </>
+    )
+  }
+
   return (
-    <div>
-      <h2>Lost Animals List</h2>
-      <ul>
-        {lostAnimals.map((lostAnimal) => (
-          <li key={lostAnimals.id}>
-            <p>Name: {lostAnimals.name}</p>
-            <p>Species: {lostAnimals.species}</p>
-            <p>Contact:</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className="grid-container">
+        {animals.map((animal) => {
+          return (
+            <div className="lostAnimal-list" key={animal.user_id}>
+              <Link to={`/animal/${animal.user_id}`}>
+                <img src={animal.photo} alt={animal.name} />
+                <p>{animal.name}</p>
+              </Link>
+              <p>$ {animal.species}</p>
+            </div>
+          )
+        })}
+      </div>
+    </>
   )
 }
-
-export default LostAnimalList
