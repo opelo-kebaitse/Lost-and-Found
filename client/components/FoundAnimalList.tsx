@@ -1,7 +1,7 @@
 import { getFoundAnimals } from '../apis/animals'
 import { useQuery } from '@tanstack/react-query'
 
-export default function foundAnimals() {
+export default function FoundAnimals() {
   const {
     data: foundAnimals,
     isLoading,

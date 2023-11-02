@@ -1,16 +1,14 @@
-import { Outlet } from 'react-router-dom'
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
-import Header from './Header'
-import Login from './Login'
-import LostAnimalList from './LostAnimalList'
-import FoundAnimalList from './FoundAnimalList'
+import { Outlet, Route, Routes } from 'react-router-dom';
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated';
+import Header from './Header';
+import Login from './Login';
+import Nav from './Nav.tsx';
 
 function App() {
- 
-
   return (
     <>
       <Header />
+      <Nav />
       <IfNotAuthenticated>
         <Login />
       </IfNotAuthenticated>
@@ -18,10 +16,8 @@ function App() {
       <IfAuthenticated>
         <Outlet />
       </IfAuthenticated>
-      <LostAnimalList/>
-      <FoundAnimalList/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
