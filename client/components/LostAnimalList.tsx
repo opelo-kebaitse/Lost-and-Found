@@ -49,7 +49,7 @@ export default function LostAnimals() {
           <option value="Cat">Cat</option>
           <option value="Dog">Dog</option>
           <option value="Rabbit">Rabbit</option>
-          {/* Add options for other species here */}
+          <option value="Turtle">Turtle</option>
         </select>
       </div>
 
