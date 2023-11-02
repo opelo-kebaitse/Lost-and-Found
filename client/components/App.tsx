@@ -2,9 +2,12 @@ import { Outlet } from 'react-router-dom'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import Header from './Header'
 import Login from './Login'
-
+import LostAnimalList from './LostAnimalList'
+import FoundAnimalList from './FoundAnimalList'
 
 function App() {
+ 
+
   return (
     <>
       <Header />
@@ -15,6 +18,8 @@ function App() {
       <IfAuthenticated>
         <Outlet />
       </IfAuthenticated>
+      <LostAnimalList/>
+      <FoundAnimalList/>
     </>
   )
 }
