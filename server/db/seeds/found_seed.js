@@ -32,8 +32,8 @@ export async function seed(knex) {
     },
     {
       id: 4,
-      species: '/images/dog-2.jpg',
-      photo: 'dog2.jpg',
+      species: 'Dog',
+      photo: '/images/dog-2.jpg',
       user_id: 126,
       user_name: 'Michael Johnson',
       user_contact: 'michael@example.com',
