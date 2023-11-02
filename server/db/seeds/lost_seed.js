@@ -9,7 +9,7 @@ export async function seed(knex) {
     {
       name: 'Fluffy',
       species: 'Cat',
-      photo: 'fluffy.jpg',
+      photo: '/images/fluffy.jpg',
       user_id: '1',
       user_name: 'John Doe',
       user_contact: 'john@example.com',
@@ -17,7 +17,7 @@ export async function seed(knex) {
     {
       name: 'Rover',
       species: 'Dog',
-      photo: 'rover.jpg',
+      photo: '/images/rover.jpg',
       user_id: '2',
       user_name: 'Jane Smith',
       user_contact: 'jane@example.com',
@@ -25,7 +25,7 @@ export async function seed(knex) {
     {
       name: 'Whiskers',
       species: 'Cat',
-      photo: 'whiskers.jpg',
+      photo: '/images/whiskers.jpg',
       user_id: '3',
       user_name: 'Alice Johnson',
       user_contact: 'alice@example.com',
@@ -33,7 +33,7 @@ export async function seed(knex) {
     {
       name: 'Buddy',
       species: 'Dog',
-      photo: 'buddy.jpg',
+      photo: '/images/buddy.jpg',
       user_id: '4',
       user_name: 'Sarah Brown',
       user_contact: 'sarah@example.com',
@@ -41,7 +41,7 @@ export async function seed(knex) {
     {
       name: 'Luna',
       species: 'Cat',
-      photo: 'luna.jpg',
+      photo: '/images/luna.jpg',
       user_id: '5',
       user_name: 'Michael Wilson',
       user_contact: 'michael@example.com',
@@ -49,7 +49,7 @@ export async function seed(knex) {
     {
       name: 'Rocky',
       species: 'Turtle',
-      photo: 'rocky.jpg',
+      photo: '/images/rocky.jpg',
       user_id: '6',
       user_name: 'Emily Davis',
       user_contact: 'emily@example.com',
@@ -57,7 +57,7 @@ export async function seed(knex) {
     {
       name: 'Oliver',
       species: 'Rabbit',
-      photo: 'oliver.jpg',
+      photo: '/images/oliver.jpg',
       user_id: '7',
       user_name: 'William Lee',
       user_contact: 'william@example.com',
