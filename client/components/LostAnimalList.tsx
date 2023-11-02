@@ -46,7 +46,7 @@ export default function LostAnimals() {
           onChange={(selectedValue) =>
             handleChangeSpecies(selectedValue.target.value)
           }
-        >
+        
           <option value="All">All</option>
           <option value="Cat">Cat</option>
           <option value="Dog">Dog</option>
