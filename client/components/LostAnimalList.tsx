@@ -36,34 +36,34 @@ export default function LostAnimals() {
       ? lostAnimals
       : lostAnimals.filter((animal) => animal.species === selectedSpecies)
 
-  return (
-    <div>
-      <h2>Lost Animals</h2>
-      <div>
-        <label>Filter by Species:</label>
-        <select
-          value={selectedSpecies}
-          onChange={(selectedValue) =>
-            handleChangeSpecies(selectedValue.target.value)
-          }
-        
-          <option value="All">All</option>
-          <option value="Cat">Cat</option>
-          <option value="Dog">Dog</option>
-          <option value="Rabbit">Rabbit</option>
-          <option value="Turtle">Turtle</option>
-        </select>
-      </div>
-
-      <div className="grid-container">
-        {filteredAnimals.map((lostAnimal) => (
-          <div className="lostAnimal" key={lostAnimal.user_id}>
-            <img src={lostAnimal.photo} alt={lostAnimal.name} />
-            <p>Name: {lostAnimal.name}</p>
-            <p>Species: {lostAnimal.species}</p>
+      return (
+        <div>
+          <h2>Lost Animals</h2>
+          <div>
+            <label>Filter by Species:</label>
+            <select
+              value={selectedSpecies}
+              onChange={(selectedValue) =>
+                handleChangeSpecies(selectedValue.target.value)
+              }
+            >
+              <option value="All">All</option>
+              <option value="Cat">Cat</option>
+              <option value="Dog">Dog</option>
+              <option value="Rabbit">Rabbit</option>
+              <option value="Turtle">Turtle</option>
+            </select>
           </div>
-        ))}
-      </div>
-    </div>
-  )
-}
+    
+          <div className="grid-container">
+            {filteredAnimals.map((lostAnimal) => (
+              <div className="lostAnimal" key={lostAnimal.user_id}>
+                <img src={lostAnimal.photo} alt={lostAnimal.name} />
+                <p>Name: {lostAnimal.name}</p>
+                <p>Species: {lostAnimal.species}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
