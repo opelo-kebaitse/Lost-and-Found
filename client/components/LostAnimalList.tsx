@@ -33,8 +33,6 @@ export default function LostAnimals() {
             <img src={lostAnimal.photo} alt={lostAnimal.name} />
             <p>Name: {lostAnimal.name}</p>
             <p>Species: {lostAnimal.species}</p>
-            <p>Lost By: {lostAnimal.user_name}</p>
-            <p>Contact: {lostAnimal.user_contact}</p>
           </div>
         ))}
       </div>

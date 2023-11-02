@@ -32,8 +32,6 @@ export default function foundAnimals() {
           <div className="foundAnimal" key={foundAnimal.user_id}>
             <img src={foundAnimal.photo} alt={foundAnimal.species} />
             <p>Species: {foundAnimal.species}</p>
-            <p>Found By: {foundAnimal.user_name}</p>
-            <p>Contact: {foundAnimal.user_contact}</p>
           </div>
         ))}
       </div>
