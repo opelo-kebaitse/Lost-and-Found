@@ -1,10 +1,17 @@
 import request from 'superagent'
-import type { Animals, Animal } from '../../models/animals.ts'
+import { LostAnimal , FoundAnimal} from '../../models/animals.ts'
+
 
 const rootUrl = '/api/v1'
 
 export async function getLostAnimals() {
   const res = await request.get(rootUrl + '/lost')
 
-  return res.body.animals as Animals[]
+  return res.body.lostAnimals as LostAnimal[]
+}
+
+export async function getFoundAnimals() {
+  const res = await request.get(rootUrl + '/found')
+
+  return res.body.foundAnimals as FoundAnimal[]
 }

@@ -1,13 +1,12 @@
 import { getLostAnimals } from '../apis/animals.ts'
 import { useQuery } from '@tanstack/react-query'
-import { Link } from 'react-router-dom'
 
 export default function LostAnimals() {
   const {
-    data: animals,
+    data: lostAnimals,
     isLoading,
     error,
-  } = useQuery(['animals'], getLostAnimals)
+  } = useQuery(['lostAnimals'], getLostAnimals)
 
   if (error) {
     return (
@@ -17,7 +16,7 @@ export default function LostAnimals() {
     )
   }
 
-  if (!animals || isLoading) {
+  if (!lostAnimals || isLoading) {
     return (
       <>
         <p>Loading</p>
@@ -26,18 +25,19 @@ export default function LostAnimals() {
   }
 
   return (
-    <>
+    <div>
+      <h2>Lost Animals</h2>
       <div className="grid-container">
-        {animals.map((animal) => {
-          return (
-            <div className="lostAnimal-list" key={animal.user_id}>
-              <img src={animal.photo} alt={animal.name} />
-              <p>{animal.name}</p>
-              <p>{animal.species}</p>
-            </div>
-          )
-        })}
+        {lostAnimals.map((lostAnimal) => (
+          <div className="lostAnimal" key={lostAnimal.user_id}>
+            <img src={lostAnimal.photo} alt={lostAnimal.name} />
+            <p>Name: {lostAnimal.name}</p>
+            <p>Species: {lostAnimal.species}</p>
+            <p>Lost By: {lostAnimal.user_name}</p>
+            <p>Contact: {lostAnimal.user_contact}</p>
+          </div>
+        ))}
       </div>
-    </>
-  )
+    </div>
+  );
 }

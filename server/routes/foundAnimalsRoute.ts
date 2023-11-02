@@ -4,16 +4,16 @@ import * as db from '../db/animals.ts'
 
 const router = express.Router()
 
-// route to get lost animals
+// route to get found animals
 
 router.get('/', async (req, res) => {
   try {
-    // const lostAnimals = await connection('lost').select('*')
-    const animals = await db.getLostAnimals()
-    res.json({ animals })
+    const foundAnimals = await db.getFoundAnimals()
+    res.json({ foundAnimals})
   } catch (error) {
     res.status(500).json('Internal Server Error')
   }
 })
 
 export default router
+
