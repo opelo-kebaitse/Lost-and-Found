@@ -1,5 +1,6 @@
-import { getLostAnimals } from '../apis/animals.ts'
+import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { getLostAnimals } from '../apis/animals.ts'
 
 export default function LostAnimals() {
   const {
@@ -7,6 +8,11 @@ export default function LostAnimals() {
     isLoading,
     error,
   } = useQuery(['lostAnimals'], getLostAnimals)
+  const [selectedSpecies, setSelectedSpecies] = useState('All')
+
+  const handleChangeSpecies = (selectedValue: React.SetStateAction<string>) => {
+    setSelectedSpecies(selectedValue)
+  }
 
   if (error) {
     return (
@@ -24,18 +30,40 @@ export default function LostAnimals() {
     )
   }
 
-  return (
-    <div>
-      <h2>Lost Animals</h2>
-      <div className="grid-container">
-        {lostAnimals.map((lostAnimal) => (
-          <div className="lostAnimal" key={lostAnimal.user_id}>
-            <img src={lostAnimal.photo} alt={lostAnimal.name} />
-            <p>Name: {lostAnimal.name}</p>
-            <p>Species: {lostAnimal.species}</p>
+  // Filter lost animals by species
+  const filteredAnimals =
+    selectedSpecies === 'All'
+      ? lostAnimals
+      : lostAnimals.filter((animal) => animal.species === selectedSpecies)
+
+      return (
+        <div>
+          <h2>Lost Animals</h2>
+          <div>
+            <label>Filter by Species:</label>
+            <select
+              value={selectedSpecies}
+              onChange={(selectedValue) =>
+                handleChangeSpecies(selectedValue.target.value)
+              }
+            >
+              <option value="All">All</option>
+              <option value="Cat">Cat</option>
+              <option value="Dog">Dog</option>
+              <option value="Rabbit">Rabbit</option>
+              <option value="Turtle">Turtle</option>
+            </select>
           </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+    
+          <div className="grid-container">
+            {filteredAnimals.map((lostAnimal) => (
+              <div className="lostAnimal" key={lostAnimal.user_id}>
+                <img src={lostAnimal.photo} alt={lostAnimal.name} />
+                <p>Name: {lostAnimal.name}</p>
+                <p>Species: {lostAnimal.species}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
