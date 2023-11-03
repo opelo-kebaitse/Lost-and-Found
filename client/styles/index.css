@@ -58,7 +58,47 @@ body {
   margin-left: 20px;
 }
 
-img{
-  width: 200px;
-  height: 200px;
+.grid-container {
+  width: 100%;
+  padding: 20px;
+  background-color: #A2D2FF;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.grid-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.lostAnimal {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.lostAnimal img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.foundAnimal {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.foundAnimal img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
