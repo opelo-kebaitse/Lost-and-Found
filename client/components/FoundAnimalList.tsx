@@ -31,15 +31,14 @@ export default function FoundAnimals() {
       </>
     )
   }
-  
+
   const { getAccessTokenSilently } = useAuth0()
 
   const handleContactClick =async () => {
     const token = getAccessTokenSilently()
-    
 
   }
-  
+
   // Filter found animals by species
   const filteredAnimals =
     selectedSpecies === 'All'
@@ -49,9 +48,11 @@ export default function FoundAnimals() {
   return (
     <div>
       <h2>Found Animals</h2>
+
       <div>
-        <label>Filter by Species:</label>
+        <label htmlFor="selected-species">Filter by Species:</label>
         <select
+          id="selected-species"
           value={selectedSpecies}
           onChange={(e) => handleChangeSpecies(e.target.value)}
         >
@@ -68,8 +69,12 @@ export default function FoundAnimals() {
           <div className="foundAnimal" key={foundAnimal.user_id}>
             <img src={foundAnimal.photo} alt={foundAnimal.species} />
             <p>Species: {foundAnimal.species}</p>
-            <IfAuthenticated><button onClick={handleContactClick}>See Contact Details</button></IfAuthenticated>
-            <IfNotAuthenticated><p>Login for more details</p></IfNotAuthenticated>
+            <IfAuthenticated>
+              <button onClick={handleContactClick}>See Contact Details</button>
+            </IfAuthenticated>
+            <IfNotAuthenticated>
+              <p>Login for more details</p>
+            </IfNotAuthenticated>
           </div>
         ))}
       </div>

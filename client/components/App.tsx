@@ -1,23 +1,24 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated';
-import Header from './Header';
-import Login from './Login';
-import Nav from './Nav.tsx';
+import { Outlet, Route, Routes } from 'react-router-dom'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import Header from './Header'
+import Login from './Login'
+import Nav from './Nav.tsx'
 
 function App() {
   return (
     <>
       {/* <Header /> */}
       <Nav />
-      <IfNotAuthenticated>
+      {/* <IfNotAuthenticated>
         <Login />
       </IfNotAuthenticated>
 
       <IfAuthenticated>
-        <Outlet />
-      </IfAuthenticated>
+      </IfAuthenticated> */}
+
+      <Outlet />
     </>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -33,16 +33,7 @@ function Nav() {
 
           {/* Links to Lost Animals and Found Animals frontend routes */}
 
-      
-          <IfAuthenticated>
-            <NavButton onClick={handleSignOut}>Sign out</NavButton>
-            {user && <p>Signed in as: {user?.nickname}</p>}
-            <p>Name: {user?.name}</p>
-          </IfAuthenticated>
-
-          <IfNotAuthenticated>
-            <NavButton onClick={handleSignIn}>Sign in</NavButton>
-            <ul>
+          <ul>
             <li>
               <Link to="/lost-animals">Lost animals</Link>
             </li>
@@ -52,6 +43,16 @@ function Nav() {
             </li>
             <br />
           </ul>
+          
+          <IfAuthenticated>
+            <NavButton onClick={handleSignOut}>Sign out</NavButton>
+            {user && <p>Signed in as: {user?.nickname}</p>}
+            <p>Name: {user?.name}</p>
+          </IfAuthenticated>
+
+          <IfNotAuthenticated>
+            <NavButton onClick={handleSignIn}>Sign in</NavButton>
+         
           </IfNotAuthenticated>
         </nav>
       </NavGroup>
