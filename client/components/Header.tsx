@@ -7,30 +7,6 @@ function Header() {
 
   return (
     <header>
-      <nav
-        className="nav-container"
-        role="navigation"
-        aria-label="main navigation"
-      >
-        <div className="title-container">
-          <Link to="/" className="title-link">
-            <h1 className="header-title">Lost and Found</h1>
-          </Link>
-        </div>
-        <div className="button-container">
-          <IfAuthenticated>
-            <p className="">{user?.nickname}</p>
-            <button className="button" onClick={() => logout()}>
-              Logout
-            </button>
-          </IfAuthenticated>
-          <IfNotAuthenticated>
-            <button className="button" onClick={() => loginWithRedirect()}>
-              Login
-            </button>
-          </IfNotAuthenticated>
-        </div>
-      </nav>
     </header>
   )
 }

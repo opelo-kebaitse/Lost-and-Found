@@ -7,7 +7,7 @@ import Nav from './Nav.tsx';
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Nav />
       <IfNotAuthenticated>
         <Login />

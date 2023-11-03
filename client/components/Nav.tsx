@@ -18,24 +18,44 @@ function Nav() {
   }
 
   return (
-    <>
+    <header>
       <NavGroup>
-        <IfAuthenticated>
-          <NavButton onClick={handleSignOut}>Sign out</NavButton>
-          {user && <p>Signed in as: {user?.nickname}</p>}
-          <p>Name: {user?.name}</p>
-        </IfAuthenticated>
+        <nav
+          className="nav-container"
+          role="navigation"
+          aria-label="main navigation"
+        >
+          <div className="title-container">
+            <Link to="/" className="title-link">
+              <h1 className="header-title">Lost and Found</h1>
+            </Link>
+          </div>
 
-        {/* Links to Lost Animals and Found Animals frontend routes */}
-        <Link to="/lost-animals">Lost animals</Link>
-        <br />
-        <Link to="/found-animals">Found animals</Link>
-        <br />
-        <IfNotAuthenticated>
-          <NavButton onClick={handleSignIn}>Sign in</NavButton>
-        </IfNotAuthenticated>
+          {/* Links to Lost Animals and Found Animals frontend routes */}
+
+      
+          <IfAuthenticated>
+            <NavButton onClick={handleSignOut}>Sign out</NavButton>
+            {user && <p>Signed in as: {user?.nickname}</p>}
+            <p>Name: {user?.name}</p>
+          </IfAuthenticated>
+
+          <IfNotAuthenticated>
+            <NavButton onClick={handleSignIn}>Sign in</NavButton>
+            <ul>
+            <li>
+              <Link to="/lost-animals">Lost animals</Link>
+            </li>
+            <br />
+            <li>
+              <Link to="/found-animals">Found animals</Link>
+            </li>
+            <br />
+          </ul>
+          </IfNotAuthenticated>
+        </nav>
       </NavGroup>
-    </>
+    </header>
   )
 }
 
