@@ -40,8 +40,9 @@ export default function LostAnimals() {
     <div>
       <h2>Lost Animals</h2>
       <div>
-        <label>Filter by Species:</label>
+        <label htmlFor="selected-species">Filter by Species:</label>
         <select
+          id="selected-species"
           value={selectedSpecies}
           onChange={(e) => handleChangeSpecies(e.target.value)}
         >
