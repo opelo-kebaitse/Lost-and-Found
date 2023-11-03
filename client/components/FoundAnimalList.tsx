@@ -11,7 +11,7 @@ export default function FoundAnimals() {
     error,
   } = useQuery(['foundAnimals'], getFoundAnimals)
   const [selectedSpecies, setSelectedSpecies] = useState('All')
-
+  const { getAccessTokenSilently } = useAuth0()
   const handleChangeSpecies = (selectedValue: React.SetStateAction<string>) => {
     setSelectedSpecies(selectedValue)
   }
@@ -32,11 +32,10 @@ export default function FoundAnimals() {
     )
   }
 
-  const { getAccessTokenSilently } = useAuth0()
-
-  const handleContactClick =async () => {
+  const handleContactClick = async (animal) => {
     const token = getAccessTokenSilently()
-
+    // const contact = await getContactDetails(animal.id, token)
+    console.log(`someone wants to see ${animal.id} contact details`)
   }
 
   // Filter found animals by species
