@@ -15,3 +15,8 @@ export async function getFoundAnimals() {
 
   return res.body.foundAnimals as FoundAnimal[]
 }
+
+export async function getContactDetails(id, token) {
+  const res = await request.get(`${rootUrl}/found/${id}`)
+  return res.body
+}
