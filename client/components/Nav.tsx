@@ -41,9 +41,12 @@ function Nav() {
             <li>
               <Link to="/found-animals">Found animals</Link>
             </li>
+            <li>
+              <Link to="/add-lost-animal">Add Lost Animal</Link>
+            </li>
             <br />
           </ul>
-          
+
           <IfAuthenticated>
             <NavButton onClick={handleSignOut}>Sign out</NavButton>
             {user && <p>Signed in as: {user?.nickname}</p>}
@@ -52,7 +55,6 @@ function Nav() {
 
           <IfNotAuthenticated>
             <NavButton onClick={handleSignIn}>Sign in</NavButton>
-         
           </IfNotAuthenticated>
         </nav>
       </NavGroup>
