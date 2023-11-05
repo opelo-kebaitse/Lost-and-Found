@@ -20,7 +20,7 @@ export async function getFoundAnimals() {
 export async function addLostAnimal(newLostAnimal: NewLostAnimal) {
   try {
     const res = await request.post(`${rootUrl}/lost`).send({ newLostAnimal });
-    return res.body.lostAnimal;
+    return res.body.newLostAnimal;
   } catch (error) {
     throw error;
   }

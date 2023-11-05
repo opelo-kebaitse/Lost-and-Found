@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
 
   try {
     await db.addLostAnimal(newLostAnimal);
-    res.status(201).json({ lostAnimal: newLostAnimal });
+    res.status(201).json({ newLostAnimal: newLostAnimal });
   } catch (error) {
     console.error('Error adding lost animal:', error);
     res.status(500).json({ error: 'Failed to add lost animal' });
