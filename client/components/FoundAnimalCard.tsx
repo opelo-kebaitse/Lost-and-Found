@@ -26,20 +26,21 @@ function FoundAnimalCard(props: Props) {
         <p>Species: {foundAnimal.species}</p>
 
         <IfAuthenticated>
-          <button
-            value={foundAnimal.id as number}
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-              showContactDetails(e.target.value)
-            }
-          >
-            See Contact Details
-          </button>
-          {contact ? (
+          {!contact ? (
+            <button
+              value={foundAnimal.id as number}
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                showContactDetails(e.target.value)
+              }
+            >
+              See Contact Details
+            </button>
+          ) : (
             <div>
               <p>Name: {contact.userName}</p>
               <p>Email: {contact.userContact}</p>
             </div>
-          ) : null}
+          )}
         </IfAuthenticated>
         <IfNotAuthenticated>
           <p>Login for more details</p>
