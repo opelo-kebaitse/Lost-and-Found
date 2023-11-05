@@ -56,7 +56,7 @@ export default function LostAnimals() {
 
       <div className="grid-container">
         {filteredAnimals.map((lostAnimal) => (
-          <div className="lostAnimal" key={lostAnimal.user_id}>
+          <div className="lostAnimal" key={lostAnimal.id}>
             <img src={lostAnimal.photo} alt={lostAnimal.name} />
             <p>Name: {lostAnimal.name}</p>
             <p>Species: {lostAnimal.species}</p>
