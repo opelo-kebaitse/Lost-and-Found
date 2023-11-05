@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
-import { useAuth0 } from '@auth0/auth0-react'
-import { getFoundAnimals, getContactDetails } from '../apis/animals.ts'
+import { getFoundAnimals } from '../apis/animals.ts'
+import FoundAnimalCard from './FoundAnimalCard.tsx'
 
 export default function FoundAnimals() {
   const {
@@ -11,7 +10,6 @@ export default function FoundAnimals() {
     error,
   } = useQuery(['foundAnimals'], getFoundAnimals)
   const [selectedSpecies, setSelectedSpecies] = useState('All')
-  const { getAccessTokenSilently } = useAuth0()
   const handleChangeSpecies = (selectedValue: React.SetStateAction<string>) => {
     setSelectedSpecies(selectedValue)
   }
@@ -30,18 +28,6 @@ export default function FoundAnimals() {
         <p>Loading</p>
       </>
     )
-  }
-
-  async function showContactDetails(id) {
-    const token = getAccessTokenSilently()
-    const contact = await getContactDetails(id, token)
-    return (
-      <>
-      <p>Name: {contact.userName}</p>
-      <p>Email: {contact.userContact}</p>
-      </>
-    )
-    
   }
 
   // Filter found animals by species
@@ -70,17 +56,8 @@ export default function FoundAnimals() {
       </div>
 
       <div className="grid-container">
-        {filteredAnimals.map((foundAnimal) => (
-          <div className="foundAnimal" key={foundAnimal.id}>
-            <img src={foundAnimal.photo} alt={foundAnimal.species} />
-            <p>Species: {foundAnimal.species}</p>
-            <IfAuthenticated>
-              <button value={foundAnimal.id} onClick={(e) => showContactDetails(e.target.value)}>See Contact Details</button>
-            </IfAuthenticated>
-            <IfNotAuthenticated>
-              <p>Login for more details</p>
-            </IfNotAuthenticated>
-          </div>
+        {filteredAnimals.map((foundAnimal, index) => (
+          <FoundAnimalCard key={index} foundAnimal={foundAnimal} />
         ))}
       </div>
     </div>
