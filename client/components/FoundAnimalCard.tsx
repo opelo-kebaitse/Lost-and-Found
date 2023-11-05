@@ -2,7 +2,7 @@ import { FoundAnimal, ContactDetail } from '../../models/animals'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import { useAuth0 } from '@auth0/auth0-react'
 import { getContactDetails } from '../apis/animals'
-import { useState } from 'react'
+import React, { useState } from 'react'
 interface Props {
   foundAnimal: FoundAnimal
 }
@@ -18,6 +18,10 @@ function FoundAnimalCard(props: Props) {
     setContact(contact)
   }
 
+  function handleShowForm(id: number) {
+    console.log(`someone wants to send contact for ${id}`)
+  }
+
   return (
     <>
       <div className="foundAnimal" key={foundAnimal.id}>
@@ -26,19 +30,19 @@ function FoundAnimalCard(props: Props) {
 
         <IfAuthenticated>
           {!contact ? (
-            <button
-              value={foundAnimal.id as number}
-              onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-                showContactDetails(e.target.value)
-              }
-            >
+            <button onClick={() => showContactDetails(foundAnimal.id)}>
               See Contact Details
             </button>
           ) : (
             <div>
-              <p>Contact Details</p>
+              <p>
+                <strong>Contact Details</strong>
+              </p>
               <p>Name: {contact.userName}</p>
               <p>Email: {contact.userContact}</p>
+              <button onClick={() => handleShowForm(foundAnimal.id)}>
+                This is my pet
+              </button>
             </div>
           )}
         </IfAuthenticated>
