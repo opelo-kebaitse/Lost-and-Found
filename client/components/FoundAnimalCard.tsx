@@ -15,7 +15,6 @@ function FoundAnimalCard(props: Props) {
   async function showContactDetails(id: number) {
     const token = getAccessTokenSilently()
     const contact = await getContactDetails(id, token)
-    console.log(contact)
     setContact(contact)
   }
 
