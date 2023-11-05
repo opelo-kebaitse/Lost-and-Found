@@ -37,6 +37,7 @@ function FoundAnimalCard(props: Props) {
             </button>
           ) : (
             <div>
+              <p>Contact Details</p>
               <p>Name: {contact.userName}</p>
               <p>Email: {contact.userContact}</p>
             </div>
