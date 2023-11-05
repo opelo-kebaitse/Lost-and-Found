@@ -1,8 +1,8 @@
-import { FoundAnimal } from '../../models/animals'
+import { FoundAnimal, ContactDetail } from '../../models/animals'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import { useAuth0 } from '@auth0/auth0-react'
 import { getContactDetails } from '../apis/animals'
-
+import { useState } from 'react'
 interface Props {
   foundAnimal: FoundAnimal
 }
@@ -10,11 +10,13 @@ interface Props {
 function FoundAnimalCard(props: Props) {
   const foundAnimal = props.foundAnimal
   const { getAccessTokenSilently } = useAuth0()
+  const [contact, setContact] = useState<ContactDetail | null>(null)
 
   async function showContactDetails(id: number) {
     const token = getAccessTokenSilently()
     const contact = await getContactDetails(id, token)
     console.log(contact)
+    setContact(contact)
   }
 
   return (
@@ -32,6 +34,12 @@ function FoundAnimalCard(props: Props) {
           >
             See Contact Details
           </button>
+          {contact ? (
+            <div>
+              <p>Name: {contact.userName}</p>
+              <p>Email: {contact.userContact}</p>
+            </div>
+          ) : null}
         </IfAuthenticated>
         <IfNotAuthenticated>
           <p>Login for more details</p>

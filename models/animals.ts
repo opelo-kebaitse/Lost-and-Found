@@ -40,7 +40,7 @@ export interface NewFoundAnimal {
 }
 
 export interface ContactDetail {
-  user_id: string
-  user_name: string
-  user_contact: string
+  userId: string
+  userName: string
+  userContact: string
 }
