@@ -9,6 +9,7 @@ export default function FoundAnimals() {
     isLoading,
     error,
   } = useQuery(['foundAnimals'], getFoundAnimals)
+
   const [selectedSpecies, setSelectedSpecies] = useState('All')
   const handleChangeSpecies = (selectedValue: React.SetStateAction<string>) => {
     setSelectedSpecies(selectedValue)
