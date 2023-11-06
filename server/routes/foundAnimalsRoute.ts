@@ -34,4 +34,33 @@ router.post('/', async (req, res) => {
   }
 })
 
+// route to post found animal
+
+router.post('/', async (req, res) => {
+  const { newFoundAnimal } = req.body as { newFoundAnimal: NewFoundAnimal }
+
+  if (!newFoundAnimal) {
+    console.error('No data provided')
+    return res.status(400).json({ error: 'Bad request' })
+  }
+  try {
+    await db.addFoundAnimal(newFoundAnimal)
+    res.status(201).json({ newFoundAnimal: newFoundAnimal })
+  } catch (error) {
+    console.error('Error adding found animal', error)
+    res.status(500).json({ error: 'Failed to add found animal' })
+  }
+})
+
+//route to get contact details 
+// api/v1/found/:id
+router.get('/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    const contact = await db.getContactDetails(id)
+    res.json(contact)
+  } catch (error) {
+    res.status(500).json('Internal Server Error')
+  }
+})
 export default router

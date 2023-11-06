@@ -37,3 +37,9 @@ export async function addFoundAnimal(newFoundAnimal: NewFoundAnimal) {
     throw error
   }
 }
+
+
+export async function getContactDetails(id, token) {
+  const res = await request.get(`${rootUrl}/found/${id}`)
+  return res.body
+}
