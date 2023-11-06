@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
-import { useAuth0 } from '@auth0/auth0-react'
 import { getFoundAnimals } from '../apis/animals.ts'
+import FoundAnimalCard from './FoundAnimalCard.tsx'
 
 export default function FoundAnimals() {
   const {
@@ -10,8 +9,8 @@ export default function FoundAnimals() {
     isLoading,
     error,
   } = useQuery(['foundAnimals'], getFoundAnimals)
-  const [selectedSpecies, setSelectedSpecies] = useState('All')
 
+  const [selectedSpecies, setSelectedSpecies] = useState('All')
   const handleChangeSpecies = (selectedValue: React.SetStateAction<string>) => {
     setSelectedSpecies(selectedValue)
   }
@@ -30,13 +29,6 @@ export default function FoundAnimals() {
         <p>Loading</p>
       </>
     )
-  }
-
-  const { getAccessTokenSilently } = useAuth0()
-
-  const handleContactClick =async () => {
-    const token = getAccessTokenSilently()
-
   }
 
   // Filter found animals by species
@@ -65,17 +57,8 @@ export default function FoundAnimals() {
       </div>
 
       <div className="grid-container">
-        {filteredAnimals.map((foundAnimal) => (
-          <div className="foundAnimal" key={foundAnimal.user_id}>
-            <img src={foundAnimal.photo} alt={foundAnimal.species} />
-            <p>Species: {foundAnimal.species}</p>
-            <IfAuthenticated>
-              <button onClick={handleContactClick}>See Contact Details</button>
-            </IfAuthenticated>
-            <IfNotAuthenticated>
-              <p>Login for more details</p>
-            </IfNotAuthenticated>
-          </div>
+        {filteredAnimals.map((foundAnimal, index) => (
+          <FoundAnimalCard key={index} foundAnimal={foundAnimal} />
         ))}
       </div>
     </div>
