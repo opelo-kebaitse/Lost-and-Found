@@ -1,6 +1,10 @@
 import request from 'superagent'
-import { LostAnimal , FoundAnimal, NewLostAnimal} from '../../models/animals.ts'
-
+import {
+  LostAnimal,
+  FoundAnimal,
+  NewLostAnimal,
+  NewFoundAnimal,
+} from '../../models/animals.ts'
 
 const rootUrl = '/api/v1'
 
@@ -16,13 +20,20 @@ export async function getFoundAnimals() {
   return res.body.foundAnimals as FoundAnimal[]
 }
 
-
 export async function addLostAnimal(newLostAnimal: NewLostAnimal) {
   try {
-    const res = await request.post(`${rootUrl}/lost`).send({ newLostAnimal });
-    return res.body.newLostAnimal;
+    const res = await request.post(`${rootUrl}/lost`).send({ newLostAnimal })
+    return res.body.newLostAnimal
   } catch (error) {
-    throw error;
+    throw error
   }
 }
 
+export async function addFoundAnimal(newFoundAnimal: NewFoundAnimal) {
+  try {
+    const res = await request.post(`${rootUrl}/found`).send({ newFoundAnimal })
+    return res.body.newFoundAnimal
+  } catch (error) {
+    throw error
+  }
+}
