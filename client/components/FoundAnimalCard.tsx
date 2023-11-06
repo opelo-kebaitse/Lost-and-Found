@@ -21,7 +21,7 @@ function FoundAnimalCard(props: Props) {
   const [form, setForm] = useState(initialFormData)
 
   async function showContactDetails(id: number) {
-    const token = getAccessTokenSilently()
+    const token = await getAccessTokenSilently()
     const contact = await getContactDetails(id, token)
     setContact(contact)
   }

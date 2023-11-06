@@ -1,7 +1,7 @@
 import express from 'express'
-
 import * as db from '../db/animals.ts'
 import { NewFoundAnimal } from '../../models/animals.ts'
+import checkJwt, { JwtRequest } from '../auth0.ts'
 
 const router = express.Router()
 
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
 // route to post found animal
 
-router.post('/', async (req, res) => {
+router.post('/',checkJwt, async (req: JwtRequest, res) => {
   const { newFoundAnimal } = req.body as { newFoundAnimal: NewFoundAnimal }
 
   if (!newFoundAnimal) {
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
 
 // route to post found animal
 
-router.post('/', async (req, res) => {
+router.post('/',checkJwt, async (req: JwtRequest, res) => {
   const { newFoundAnimal } = req.body as { newFoundAnimal: NewFoundAnimal }
 
   if (!newFoundAnimal) {
@@ -54,9 +54,9 @@ router.post('/', async (req, res) => {
 
 //route to get contact details 
 // api/v1/found/:id
-router.get('/:id', async (req, res) => {
+router.get('/:id',checkJwt, async (req: JwtRequest, res) => {
   try {
-    const id = req.params.id
+    const id = parseInt(req.params.id)
     const contact = await db.getContactDetails(id)
     res.json(contact)
   } catch (error) {

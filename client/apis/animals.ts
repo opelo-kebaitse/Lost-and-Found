@@ -30,7 +30,9 @@ export async function addFoundAnimal(newFoundAnimal: NewFoundAnimal) {
   return res.body.newFoundAnimal
 }
 
-export async function getContactDetails(id: number, token) {
-  const res = await request.get(`${rootUrl}/found/${id}`)
+export async function getContactDetails(id: number, token: string) {
+  const res = await request
+    .get(`${rootUrl}/found/${id}`)
+    .set('Authorization', `Bearer ${token}`)
   return res.body
 }
