@@ -6,9 +6,6 @@ import { Link } from 'react-router-dom'
 function Nav() {
   const { user, logout, loginWithRedirect } = useAuth0()
 
-  // Log the full user object to the console
-  console.log(user)
-
   const handleSignOut = () => {
     logout()
   }
@@ -48,7 +45,7 @@ function Nav() {
             <li>
               <Link to="/add-lost-animal">Add Lost Animal</Link>
             </li>
-            <br/>
+            <br />
             <li>
               <Link to="/add-found-animal">Add Found Animal</Link>
             </li>

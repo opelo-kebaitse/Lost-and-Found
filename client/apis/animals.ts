@@ -21,25 +21,16 @@ export async function getFoundAnimals() {
 }
 
 export async function addLostAnimal(newLostAnimal: NewLostAnimal) {
-  try {
-    const res = await request.post(`${rootUrl}/lost`).send({ newLostAnimal })
-    return res.body.newLostAnimal
-  } catch (error) {
-    throw error
-  }
+  const res = await request.post(`${rootUrl}/lost`).send({ newLostAnimal })
+  return res.body.newLostAnimal
 }
 
 export async function addFoundAnimal(newFoundAnimal: NewFoundAnimal) {
-  try {
-    const res = await request.post(`${rootUrl}/found`).send({ newFoundAnimal })
-    return res.body.newFoundAnimal
-  } catch (error) {
-    throw error
-  }
+  const res = await request.post(`${rootUrl}/found`).send({ newFoundAnimal })
+  return res.body.newFoundAnimal
 }
 
-
-export async function getContactDetails(id, token) {
+export async function getContactDetails(id: number, token) {
   const res = await request.get(`${rootUrl}/found/${id}`)
   return res.body
 }

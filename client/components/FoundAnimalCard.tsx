@@ -49,7 +49,7 @@ function FoundAnimalCard(props: Props) {
   return (
     <>
       <div className="foundAnimal" key={foundAnimal.id}>
-        <img src={foundAnimal.photo} alt={foundAnimal.species} />
+        <img src={foundAnimal.photo} alt={`Lost ${foundAnimal.species}`} />
         <p>Species: {foundAnimal.species}</p>
 
         <IfAuthenticated>
