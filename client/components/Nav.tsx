@@ -1,66 +1,67 @@
-import { useAuth0 } from '@auth0/auth0-react'
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated.tsx'
-import { NavGroup, NavButton } from './Styled.tsx'
-import { Link } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react';
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated.tsx';
+import { Link } from 'react-router-dom';
+import '../styles/index.css';
 
 function Nav() {
-  const { user, logout, loginWithRedirect } = useAuth0()
+  const { user, logout, loginWithRedirect } = useAuth0();
 
   const handleSignOut = () => {
-    logout()
-  }
+    logout();
+  };
 
   const handleSignIn = () => {
-    loginWithRedirect()
-  }
+    loginWithRedirect();
+  };
 
   return (
     <header>
-      <NavGroup>
-        <nav
-          className="nav-container"
-          role="navigation"
-          aria-label="main navigation"
-        >
-          <div className="title-container">
-            <Link to="/" className="title-link">
-              <h1 className="header-title">Lost and Found</h1>
-            </Link>
-          </div>
+      <div className="nav-container" role="navigation" aria-label="main navigation">
+        <div className="title-container">
+          <Link to="/" className="title-link">
+            <h1 className="header-title">Lost and Found</h1>
+          </Link>
+        </div>
 
-          {/* Links to Lost Animals and Found Animals frontend routes */}
-
-          <ul>
+        <div className="nav-links">
+          <ul className="nav-list">
             <li>
               <Link to="/lost-animals">Lost animals</Link>
             </li>
-            <br />
             <li>
               <Link to="/found-animals">Found animals</Link>
             </li>
-            <br />
           </ul>
 
           <IfAuthenticated>
-            <li>
+            <div className="user-actions">
               <Link to="/add-lost-animal">Add Lost Animal</Link>
-            </li>
-            <br />
-            <li>
               <Link to="/add-found-animal">Add Found Animal</Link>
-            </li>
-            <NavButton onClick={handleSignOut}>Sign out</NavButton>
-            {user && <p>Signed in as: {user?.nickname}</p>}
-            <p>Name: {user?.name}</p>
+              <br/>
+              {user && (
+                <>
+                  <p>Signed in as: {user?.nickname}</p>
+                  <p>Name: {user?.name}</p>
+                </>
+              )}
+              <br/>
+              <button className="button" onClick={handleSignOut}>
+                Sign out
+              </button>
+            </div>
           </IfAuthenticated>
 
           <IfNotAuthenticated>
-            <NavButton onClick={handleSignIn}>Sign in</NavButton>
+            <div className="user-actions">
+              <button className="button" onClick={handleSignIn}>
+                Sign in
+              </button>
+            </div>
           </IfNotAuthenticated>
-        </nav>
-      </NavGroup>
+        </div>
+      </div>
     </header>
-  )
+  );
 }
 
-export default Nav
+export default Nav;
