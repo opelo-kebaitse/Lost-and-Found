@@ -29,7 +29,7 @@ export async function getFoundAnimals(db = connection): Promise<FoundAnimal[]> {
 }
 
 export async function addFoundAnimal(newFoundAnimal: NewFoundAnimal, db = connection): Promise<void> {
-  return db('lost').insert({
+  return db('found').insert({
     species: newFoundAnimal.species,
     photo: newFoundAnimal.photo,
     user_id: newFoundAnimal.user_id,
