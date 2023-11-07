@@ -20,17 +20,40 @@ export async function getFoundAnimals() {
   return res.body.foundAnimals as FoundAnimal[]
 }
 
-export async function addLostAnimal(newLostAnimal: NewLostAnimal) {
-  const res = await request.post(`${rootUrl}/lost`).send({ newLostAnimal })
+interface AddLostAnimalFunction {
+  formData: NewLostAnimal
+  token: string
+}
+export async function addLostAnimal({
+  formData,
+  token,
+}: AddLostAnimalFunction) {
+    const res = await request
+    .post(`${rootUrl}/lost`)
+    .set('Authorization', `Bearer ${token}`) // set authorization
+    .send({ formData })
   return res.body.newLostAnimal
 }
 
-export async function addFoundAnimal(newFoundAnimal: NewFoundAnimal) {
-  const res = await request.post(`${rootUrl}/found`).send({ newFoundAnimal })
+interface AddFoundAnimalFunction {
+  formData: NewFoundAnimal
+  token: string
+}
+
+export async function addFoundAnimal({
+  formData,
+  token,
+}: AddFoundAnimalFunction) {
+  const res = await request
+    .post(`${rootUrl}/found`)
+    .set('Authorization', `Bearer ${token}`) // set authorization
+    .send({ formData })
   return res.body.newFoundAnimal
 }
 
-export async function getContactDetails(id: number, token) {
-  const res = await request.get(`${rootUrl}/found/${id}`)
+export async function getContactDetails(id: number, token: string) {
+  const res = await request
+    .get(`${rootUrl}/found/${id}`)
+    .set('Authorization', `Bearer ${token}`)
   return res.body
 }

@@ -2,8 +2,12 @@ import React, { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { addFoundAnimal } from '../apis/animals.ts'
 import { NewFoundAnimal } from '../../models/animals.ts'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const AddFoundAnimalForm = () => {
+
+  const {getAccessTokenSilently} = useAuth0() // Destructure getAccessTokenSilently
+
   const [formData, setFormData] = useState<NewFoundAnimal>({
     species: '',
     photo: '',
@@ -29,9 +33,10 @@ const AddFoundAnimalForm = () => {
     },
   })
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    mutation.mutate(formData)
+    const token = await getAccessTokenSilently() // use getAccessTokenSilently to get an access token
+    mutation.mutate({formData, token})
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
