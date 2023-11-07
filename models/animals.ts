@@ -38,3 +38,9 @@ export interface NewFoundAnimal {
   user_name: string
   user_contact: string
 }
+
+export interface ContactDetail {
+  userId: string
+  userName: string
+  userContact: string
+}
